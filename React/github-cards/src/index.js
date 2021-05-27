@@ -11,7 +11,7 @@ const testData = [
 //writing this one as a function component to have an example for both function and class
 const CardList = (props) => (
     <div>
-        {testData.map(profile => <Card {...profile}/>)}
+        {props.profiles.map(profile => <Card {...profile}/>)}
     </div>
 )
 
@@ -30,13 +30,34 @@ class Card extends React.Component {
     }
 }
 
-class App extends React.Component {
+class Form extends React.Component {
+    render() {
+        return (
+            <form action="">
+                <input type="text" placeholder="Github username" />
+                <button>Add Card</button>
+            </form>
+        );
+    }
+}
 
+class App extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            profiles: testData
+        };
+    }
+    //same thing:
+    //state = {
+    //     profiles: testData,
+    // }
     render() {       
         return ( 
         <div>
             <div className="header">{this.props.title}</div>
-            <CardList />
+            <Form />
+            <CardList profiles={this.state.profiles}/>
         </div>
         )
     }
