@@ -1,17 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import './index.css';
-
-const testData = [
-    {name: "Dan Abramov", avatar_url: "https://avatars0.githubusercontent.com/u/810438?v=4", company: "@facebook"},
-{name: "Sophie Alpert", avatar_url: "https://avatars2.githubusercontent.com/u/6820?v=4", company: "Humu"},
-  {name: "Sebastian Markbåge", avatar_url: "https://avatars2.githubusercontent.com/u/63648?v=4", company: "Facebook"},
-];
 
 //writing this one as a function component to have an example for both function and class
 const CardList = (props) => (
     <div>
-        {props.profiles.map(profile => <Card {...profile}/>)}
+        {props.profiles.map(profile => <Card key={profile.id} {...profile}/>)}
     </div>
 )
 
@@ -32,9 +27,12 @@ class Card extends React.Component {
 
 class Form extends React.Component {
     state = { userName: ''}
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(this.state.userName)
+        const resp = await axios.get(`https://api.github.com/users/${this.state.userName}`)
+        this.props.onSubmit(resp.data)
+        this.setState({ userName: ''})
+        
     }
     render() {
         return (
@@ -56,8 +54,14 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            profiles: testData
+            profiles: []
         };
+        
+    }
+    addNewProfile = (profileData) => {
+        this.setState(prevState => ({
+            profiles: [...prevState.profiles, profileData]
+        }))
     }
     //same thing:
     //state = {
@@ -67,7 +71,7 @@ class App extends React.Component {
         return ( 
         <div>
             <div className="header">{this.props.title}</div>
-            <Form />
+            <Form onSubmit={this.addNewProfile}/>
             <CardList profiles={this.state.profiles}/>
         </div>
         )
