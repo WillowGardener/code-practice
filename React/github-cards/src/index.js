@@ -2,16 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+const testData = [
+    {name: "Dan Abramov", avatar_url: "https://avatars0.githubusercontent.com/u/810438?v=4", company: "@facebook"},
+{name: "Sophie Alpert", avatar_url: "https://avatars2.githubusercontent.com/u/6820?v=4", company: "Humu"},
+  {name: "Sebastian Markbåge", avatar_url: "https://avatars2.githubusercontent.com/u/63648?v=4", company: "Facebook"},
+];
 
+//writing this one as a function component to have an example for both function and class
+const CardList = (props) => (
+    <div>
+        {testData.map(profile => <Card {...profile}/>)}
+    </div>
+)
 
 class Card extends React.Component {
-    render() {
+    render(props) {
+        const profile = this.props
         return (
             <div className="github-profile">
-                <img src="https://www.nomadfoods.com/wp-content/uploads/2018/08/placeholder-1-e1533569576673-1200x1200.png" />
+                <img src= {profile.avatar_url} />
                 <div className="info">
-                    <div className="name">Name Here...</div>
-                    <div className="company">Company Here...</div>
+                    <div className="name">{profile.name}</div>
+                    <div className="company">{profile.company}</div>
                 </div>
             </div>
         )
@@ -20,12 +32,11 @@ class Card extends React.Component {
 
 class App extends React.Component {
 
-    render() {
-       
+    render() {       
         return ( 
         <div>
             <div className="header">{this.props.title}</div>
-            <Card />
+            <CardList />
         </div>
         )
     }
