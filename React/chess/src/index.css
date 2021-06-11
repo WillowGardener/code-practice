@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+}
+
+#chessboard {
+  background-color: rgb(88, 33, 11);
+  width: 800px;
+  height: 800px;
+  display: grid;
+  grid-template-columns: repeat(8, 100px)
+}
+
+#chessboard .green-tile {
+  background-color: rgb(11, 83, 11);
+}
+
+#chessboard .brown-tile {
+  background-color: rgb(88, 33, 11);;
+}
+
+.tile {
+  width: 100px;
+  height: 100px
+}
