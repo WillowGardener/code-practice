@@ -1,0 +1,26 @@
+.drag-n-drop {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(99, 8, 26);
+}
+
+h3 {
+    text-align: center;
+    color:rgb(0, 23, 100)
+}
+
+.dnd-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    width: 300px;
+    height: 200px;
+    border: 1px solid black;
+    background-color: rgb(116, 86, 145);
+    margin: 5px;
+}
+
+.current {
+    background-color: rgba(0, 0, 0, 0.952);
+}
