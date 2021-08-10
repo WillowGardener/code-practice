@@ -1,0 +1,8 @@
+#poke-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pokedex-entry {
+    max-width: 20vw;
+}

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POKE EVERY MANS</title>
+</head>
+<body>
+    {% csrf_token %}
+    <header>
+        {% if user.is_authenticated %}
+        <h1>Welcome {{ user.username }}!</h1>
+        <p><a href="{% url 'logout' %}">Logout</a><p>
+        {% else %}
+        <h1>Welcome, visitor!</h1>
+        <p>You are not logged in. <a href="{% url 'login' %}">Login</a> <a href="{% url 'users:signup' %}">Sign Up</a></p>
+        {% endif %}
+    </header>
+
+    <div id="app">
+        <div id="new-poke">
+            <input v-model="newPoke.name" placeholder="Name">
+            <input v-model="newPoke.number" placeholder="number">
+            <input v-model="newPoke.height" placeholder="height">
+            <input v-model="newPoke.weight" placeholder="weight">
+            <input v-model="newPoke.image_front" placeholder="face pic">
+            <input v-model="newPoke.image_back" placeholder="booty pic">
+            <label for='type1'>Type 1</label>
+            <select name='type1' v-model="newPoke.type_1">
+                <option value='18'>Poison</option>
+                <option value='19'>Grass</option>
+                <option value='20'>Fire</option>
+                <option value='21'>Flying</option>
+                <option value='22'>Water</option>
+                <option value='23'>Bug</option>
+                <option value='24'>Normal</option>
+                <option value='25'>Electric</option>
+                <option value='26'>Ground</option>
+                <option value='27'>Fairy</option>
+                <option value='28'>Fighting</option>
+                <option value='29'>Psychic</option>
+                <option value='30'>Rock</option>
+                <option value='31'>Steel</option>
+                <option value='32'>Ice</option>
+                <option value='33'>Ghost</option>
+                <option value='34'>Dragon</option>
+
+            </select>
+            <label for='type2'>Type 2</label>
+            <select name='type2' v-model="newPoke.type_2">
+                
+                <option value='18'>Poison</option>
+                <option value='19'>Grass</option>
+                <option value='20'>Fire</option>
+                <option value='21'>Flying</option>
+                <option value='22'>Water</option>
+                <option value='23'>Bug</option>
+                <option value='24'>Normal</option>
+                <option value='25'>Electric</option>
+                <option value='26'>Ground</option>
+                <option value='27'>Fairy</option>
+                <option value='28'>Fighting</option>
+                <option value='29'>Psychic</option>
+                <option value='30'>Rock</option>
+                <option value='31'>Steel</option>
+                <option value='32'>Ice</option>
+                <option value='33'>Ghost</option>
+                <option value='34'>Dragon</option>
+
+            </select>
+            <button @click="createPoke">Add to Pokedex</button>
+        </div>
+
+        <div id="poke-list">
+            
+            <div v-for="poke in pokeArray" class="pokedex-entry">
+                <div>
+                    <h3>#[[poke.number]] [[poke.name]]</h3>
+                    <div>[[poke.height]] meters</div>
+                    <div>[[poke.weight]] kilograms</div>
+                    <img :src="[[poke.image_front]]">
+                    <img :src="[[poke.image_back]]">
+                    <button @click="deletePoke(poke)">EXTINCTIFY</button>
+                </div>
+                <div>
+                    <input v-model="editedPoke.name" placeholder='Name'>
+                    <input v-model="editedPoke.number" placeholder='Number'>
+                    <input v-model="editedPoke.height" placeholder='height'>
+                    <input v-model="editedPoke.weight" placeholder='weight'>
+                    <input v-model="editedPoke.image_front" placeholder='face pic'>
+                    <input v-model="editedPoke.image_back" placeholder='booty pic'>
+                    <button @click="editPoke(poke)">CHANGE</button>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            delimiters: ["[[","]]"],
+            data: {
+                pokeArray: [],
+                newPoke: {
+                    "number":"",
+                    "name":"",
+                    "height":"",
+                    "weight":"",
+                    "image_front":"",
+                    "image_back":"",
+                    "caught_by":[],
+                    "type_1":"",
+                    "type_2":"",
+
+                },
+                editedPoke: {
+                    "number":"",
+                    "name":"",
+                    "height":"",
+                    "weight":"",
+                    "image_front":"",
+                    "image_back":"",
+                    "type_1":"",
+                    "type_2":"",
+
+                },
+                csrf_token: "",
+            },
+            methods: {
+                loadPokes: function() {
+                    axios({
+                        method: "get",
+                        url: "/api/pokemon/"
+                    }).then(response => {
+                        
+                        this.pokeArray = response.data
+                        console.log(this.poke)
+                    })
+                },
+                createPoke: function() {
+                    axios({
+                        method: "post",
+                        url: "/api/pokemon/",
+                        headers: {
+                            "X-CSRFToken": this.csrf_token 
+                        },
+                        data: {
+                            
+                            "number": this.newPoke.number,
+                            "name": this.newPoke.name,
+                            "height": this.newPoke.height,
+                            "weight": this.newPoke.weight,
+                            "image_front": this.newPoke.image_front,
+                            "image_back": this.newPoke.image_back,
+                            "caught_by":[],
+                            "types": [this.newPoke.type_1,this.newPoke.type_2]
+                            
+                        },
+                    }).then(response => {
+                        this.loadPokes()
+                    })
+                },
+                deletePoke: function(poke) {
+                    axios({
+                        method: "delete",
+                        url: `/api/pokemon/${poke.id}`,
+                        headers: {
+                            "X-CSRFToken": this.csrf_token
+                        },
+                    }).then(response => {
+                        this.loadPokes()
+                    })
+
+                },
+
+                editPoke: function(poke) {
+                    axios({
+                        method: "patch",
+                        url: `/api/pokemon/${poke.id}`,
+                        headers: {
+                            'X-CSRFToken': this.csrf_token
+                        },
+                        data: {
+                            "number": this.editedPoke.number,
+                            "name": this.editedPoke.name,
+                            "height": this.editedPoke.height,
+                            "weight": this.editedPoke.weight,
+                            "image_front": this.editedPoke.image_front,
+                            "image_back": this.editedPoke.image_back,
+                            //"types": [this.editedPoke.type_1,this.editedPoke.type_2]
+                        }
+                    })
+                }
+            },
+            created: function() {
+                this.loadPokes()
+            },
+            mounted: function() {
+                this.csrf_token = document.querySelector("input[name=csrfmiddlewaretoken]").value
+            }
+        })
+    </script>
+</body>
+
+</html>

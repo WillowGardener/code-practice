@@ -1,0 +1,59 @@
+
+<html>
+<head>
+<title>Look at this stuff, isn't it neat?</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<div id='root'>
+    <h1>colors!</h1>
+    <div v-if='count == 1'>
+        green
+    </div>
+    <div v-else-if='count == 2'>
+        blue
+    </div>
+    <div v-else-if='count== 3'>
+        yellooooooow
+    </div>
+    <div v-else>
+        enter a number, 1-3
+    </div>
+
+    <input v-model='count'>
+
+    <div v-show="count == 4" class='red'>
+        Nooooo oh God not 4!
+    </div>
+
+    <h1>Email signup</h1>
+    <input v-model='email' v-bind:class="{red: email.length < 5 }">
+    <button onclick='alert("you did it! Good girl and/or boy!")' v-bind:disabled='email.length<5'>
+        SUBMIT, PEASANT
+    </button>
+    <p v-text='email'></p>
+
+    <h1>Do you know html? Prove it, write some</h1>
+    <input v-model='htmlTest'>
+    <p v-html='htmlTest'>
+
+    <h1>These are cat names</h1>
+    {{ kittifyName }}
+    <input v-model='newCat' @keyup.enter='addKitty'>
+    <button @click='addKitty'>MORE CAT</button>
+    <ul>
+        <li v-for='cat in cats'>{{cat}}</li>
+    </ul>
+
+    <h1>These, however, are dog names</h1>
+
+    <ul>
+        <li v-for='dog in dogs'> {{ dog.name | kittify | capitalize }} </li>
+    </ul>
+    <input v-model='newDog' v-on:keyup.enter='addDog'><button v-on:click='addDog'>but there are more dog names...</button>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src='script.js'></script>
+</div>
+
+</html>

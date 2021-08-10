@@ -39,11 +39,21 @@ pieces.push(<Piece image='./assets/images/bishop_b.png' x={5} y= {7}/>)
 pieces.push(<Piece image='./assets/images/knight_b.png' x={6} y= {7}/>)
 pieces.push(<Piece image='./assets/images/rook_b.png' x={7} y= {7}/>)
 
+function grabPiece(e) {
+  console.log(e)
+}
+
+
+
 function Tile(props) {
     if (props.number%2 === 1) {
-        return <div className='tile green-tile'><img src={props.image}/></div>
+        return <div className='tile green-tile'>
+          {props.image && <div className='chess-piece' style={{backgroundImage: `url(${props.image})`}}></div>} 
+        </div>
     } else {
-        return <div className='tile brown-tile'><img src={props.image}/></div>
+        return <div className='tile brown-tile'>
+          {props.image && <div className='chess-piece' style={{backgroundImage: `url(${props.image})`}}></div>}
+        </div>
     }
 }
 
@@ -57,14 +67,14 @@ function ChessBoard() {
             pieces.forEach(p=> {
               if (p.props.x === j && p.props.y === i){
                 image = p.props.image
-                console.log(p)
+                
               }
             })
-            board.push(<Tile image = {image} number={colorNumber} />)
+            board.push(<Tile key={`${i},${j}`} image = {image} number={colorNumber} />)
             
         }
     }
-    return <div id='chessboard'>
+    return <div onMouseDown={e => grabPiece(e)} id='chessboard'>
         {board}
     </div>
 }
