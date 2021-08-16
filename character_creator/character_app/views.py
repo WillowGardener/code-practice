@@ -35,21 +35,24 @@ def add_character(request):
     weapon_string = request.POST['weapon']
     armor_string = request.POST['armor']
 
-    #this is probably the jankiest possible way to do this, but it functions. It defines weapons as the set of all
-    #weapon objects. Then it asks whether the name of each of those weapons (which I created using the admin panel)
-    #matches the name input by the user using the select tags in the HTML. If it does, it defines a variable that is
-    #equal to that weapon object. It does the same thing with armors. This way, later we can assign each weapon to 
-    #a character--because we defined the character's "weapon" attribute using models.Foreignkey
+    #Here, we search through all weapons and then all armors (which I created using the admin panel) and
+    # asks each of them whether its name matches the value entered by the user using the select and option
+    # tags. If the name matches, it assigns that object to a variable, named weapon and armor, respectively. 
+    #  This way, later we can assign each weapon to a character--because we defined the character's "weapon" 
+    # attribute using models.Foreignkey
 
-    weapons = Weapon.objects.all()
-    for wep in weapons:
-        if wep.name == weapon_string:
-            weapon = wep
+    weapon = Weapon.objects.get(name=weapon_string)
+    armor = Armor.objects.get(name=armor_string)
 
-    armors = Armor.objects.all()
-    for arm in armors:
-        if arm.name == armor_string:
-            armor = arm
+    # weapons = Weapon.objects.all()
+    # for wep in weapons:
+    #     if wep.name == weapon_string:
+    #         weapon = wep
+
+    # armors = Armor.objects.all()
+    # for arm in armors:
+    #     if arm.name == armor_string:
+    #         armor = arm
 
     #This is where we do the math! My math is pretty simple, just to give a basic example. Your math will be
     #way more complicated, because you are an actual engineer while I am simply a keyboard dork. But you can
