@@ -1,0 +1,39 @@
+<div>
+    <h3>Create a New Character</h3>
+    <form action="{% url 'character_app:add_character' %}">
+        <input type=text placeholder='character name' name='character_name'>
+        <input type='text' placeholder='strength' name='strength'>
+        <input type='text' placeholder='dexterity' name='dexterity'>
+        <input type='text' placeholder='constitution' name='constitution'>
+        <input type='text' placeholder='intelligence' name='intelligence'>
+        <input type='text' placeholder='wisdom' name='wisdom'>
+        <input type='text' placeholder='charisma' name='charisma'>
+
+        <label for='weapon'>Choose a Weapon:</label>
+        <select name='weapon'>    
+            <option value='sword'>Sword</option>
+            <option value='mace'>Mace</option>
+            <option value='spear'>Spear</option>
+            <option value='wand'>Wand</option>
+            <option value='totem'>Totem</option>
+
+        </select >
+           
+        <label for='armor'>Choose an Armor:</label>
+        <select name='armor'>
+             <option value='tattoos'>Tattoos</option>
+            <option value='cloth'>cloth</option>
+            <option value='leather'>Leather</option>
+            <option value='mail'>Mail</option>
+            <option value='plate'>Plate</option>
+        </select>
+
+        <button>Create Character</button>
+    </form>
+    <ul>
+        {% for character in characters %}
+            <h3>{{character.name}}</h3>
+        {% endfor %}
+    </ul>
+
+</div>
