@@ -18,14 +18,14 @@ def home(request):
     return render(request, 'home.html', context)
 
 def add_character(request):
-    name = request.POST['character_name']
+    character_name = request.POST.get('charactername')
 
-    strength = int(request.POST['strength'])
-    dexterity = int(request.POST['dexterity'])
-    constitution = int(request.POST['constitution'])
-    intelligence = int(request.POST['intelligence'])
-    wisdom = int(request.POST['wisdom'])
-    charisma = int(request.POST['charisma'])
+    strength = int(request.POST.get('strength'))
+    dexterity = int(request.POST.get('dexterity'))
+    constitution = int(request.POST.get('constitution'))
+    intelligence = int(request.POST.get('intelligence'))
+    wisdom = int(request.POST.get('wisdom'))
+    charisma = int(request.POST.get('charisma'))
 
     max_health = constitution+20
 
@@ -46,6 +46,6 @@ def add_character(request):
     total_damage = weapon.damage + (strength-10)/2
     
 
-    character = Character.objects.create(name=name,max_health=max_health,strength=strength,dexterity=dexterity,constitution=constitution,intelligence=intelligence,wisdom=wisdom,charisma=charisma,weapon=weapon,armor=armor, total_dodge_chance=total_dodge_chance,total_damage=total_damage)
+    character = Character.objects.create(name=character_name,max_health=max_health,strength=strength,dexterity=dexterity,constitution=constitution,intelligence=intelligence,wisdom=wisdom,charisma=charisma,weapon=weapon,armor=armor, total_dodge_chance=total_dodge_chance,total_damage=total_damage)
 
     return HttpResponseRedirect(reverse('character_app:home'))
