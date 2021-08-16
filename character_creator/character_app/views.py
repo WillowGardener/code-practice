@@ -5,6 +5,8 @@ from django.urls import reverse
 from .models import *
 
 def home(request):
+    #This is our home view. It simply defines all of our object lists, plugs them into a context, and then
+    #sends the user to our home.html template
     characters = Character.objects.all()
     weapons = Weapon.objects.all()
     armors = Armor.objects.all()
@@ -43,16 +45,6 @@ def add_character(request):
 
     weapon = Weapon.objects.get(name=weapon_string)
     armor = Armor.objects.get(name=armor_string)
-
-    # weapons = Weapon.objects.all()
-    # for wep in weapons:
-    #     if wep.name == weapon_string:
-    #         weapon = wep
-
-    # armors = Armor.objects.all()
-    # for arm in armors:
-    #     if arm.name == armor_string:
-    #         armor = arm
 
     #This is where we do the math! My math is pretty simple, just to give a basic example. Your math will be
     #way more complicated, because you are an actual engineer while I am simply a keyboard dork. But you can
