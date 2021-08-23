@@ -1,0 +1,118 @@
+.meet {
+  margin-left: 1.25rem;
+  font-size: 4.5rem;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 1.5rem;
+}
+
+p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 5px;
+  font-family: Georgia, serif;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  margin: 1.25rem;
+  width: 80vw;
+  height: 80vw;
+  background-color: #9636ad;
+  -webkit-transition: all 300ms cubic-bezier(1, 0, 0.55, 0.85);
+  transition: all 300ms cubic-bezier(1, 0, 0.55, 0.85);
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  opacity: .3;
+  -webkit-filter: contrast(200%);
+          filter: contrast(200%);
+  -webkit-transition: all 300ms cubic-bezier(1, 0, 0.55, 0.85);
+  transition: all 300ms cubic-bezier(1, 0, 0.55, 0.85);
+  position: relative;
+}
+
+.nameplate {
+  position: absolute;
+  bottom: 0;
+  width: 94%;
+  padding: 3%;
+  color: #ffffff;
+  background-color: #150a3a;
+  opacity: .82;
+}
+
+.employee-title {
+  font-family: Helvetica, sans-serif;
+}
+
+.show {
+  visibility: visible;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.bio {
+  position: absolute;
+  padding: 3rem;
+}
+
+@media (min-width: 450px) {
+  .card {
+    width: 30vw;
+    height: 30vw;
+  }
+  main {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto auto auto;
+        grid-template-columns: auto auto auto;
+  }
+}
+
+@media (min-width: 801) {
+  .meet {
+    font-size: 200%;
+  }
+}
+
+@media (max-width: 800px) {
+  .nameplate.hide {
+    visibility: visible;
+  }
+}
+/*# sourceMappingURL=app.css.map */

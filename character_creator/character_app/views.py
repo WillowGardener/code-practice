@@ -32,7 +32,8 @@ def add_character(request):
     wisdom = int(request.POST.get('wisdom'))
     charisma = int(request.POST.get('charisma'))
 
-    max_health = constitution+20
+    #request.POST['element'] and request.POST.get('element') do essentially the same thing, but request.POST.get()
+    #can give you more detailed error messages, so I will sometimes use it instead when debugging
 
     weapon_string = request.POST['weapon']
     armor_string = request.POST['armor']
@@ -52,12 +53,13 @@ def add_character(request):
     #that to a new variable. These are all local variables, and so they only exist for a few milliseconds while
     #this view is running.
     
+    max_health = constitution+20
     total_dodge_chance = armor.dodge_chance + dexterity/2
     total_damage = weapon.damage + (strength-10)/2
     
     #that's why we are taking these variables. creating a new character object, and then plugging each variable
     #into our character object. See all the things in the parentheses after create()? This is where I'm assigning
-    #the local variables we created in this function to the attributes of this character object--the attributes
+    #the local variables we created in this function to the attributes of this Character object--the attributes
     #we defined in our models.py. This way, all our variables are now saved in a database, attached to this 
     #Character object.
 

@@ -1,0 +1,131 @@
+$color-pink: #faa7ed;
+$color-hotpink: #9636ad;
+$color-navy: #0c1f72;
+$color-navy-opaque: rgba(6, 0, 79, 0.77);
+$color-light: #ffffff;
+$color-dark: #252525;
+$color-purple: #150a3a;
+$font-serif: Georgia, serif;
+$font-sans: Helvetica, sans-serif;
+$metric-wrapper: 40rem;
+$metric-gutter: 1.25rem;
+$transition-snappy: 200ms linear;
+$transition-silky: 300ms cubic-bezier(1, 0, 0.55, 0.85);
+
+.meet {
+    margin-left: $metric-gutter;
+    font-size: 4.5rem;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;   
+}
+
+p {
+    display: flex;
+    margin: 5px;
+    font-family: $font-serif;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+
+.card {
+    position: relative;
+    z-index: 1;
+    margin: $metric-gutter;
+    width: 80vw;
+    height: 80vw;
+    background-color: $color-hotpink;
+    transition: all $transition-silky;    
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+
+
+img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: .3;
+    filter: contrast(200%);
+    transition: all $transition-silky;
+    position: relative;
+}
+
+
+.nameplate {
+    position: absolute;
+    bottom: 0;
+    width: 94%;
+    padding: 3%;
+    color: $color-light;
+    background-color: $color-purple;
+    opacity: .82;
+    
+}
+
+.employee-title {
+    font-family: $font-sans;
+}
+
+.show {
+    visibility: visible;
+    
+}
+
+.hide {
+    visibility: hidden;
+     
+}
+
+
+
+.bio {
+    position: absolute;
+    padding: 3rem;
+    
+}
+
+
+@media (min-width: 450px) {
+    .card {
+        width: 30vw;
+        height: 30vw;
+        
+    }
+    main {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        
+    }
+
+  
+    
+}
+
+@media (min-width: 801) {
+    .meet {
+        font-size: 200%;
+    }
+    
+}
+
+@media (max-width: 800px) {
+    .nameplate.hide {    
+        visibility: visible;            
+    }
+    
+    
+}
+
