@@ -1,0 +1,36 @@
+header {
+    display: grid;
+    grid-template-columns: 85% auto;
+}
+
+.chat-box {
+    border: 1px soilid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    border: 1px soilid black;
+    display: flex;
+    margin: 5px;
+    max-width: 90%;
+
+}
+
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat {
+    width: 70%;
+}
+
+textarea {
+    max-width: 90%;
+}
+
+.message-text {
+    max-width: 80%;
+}
