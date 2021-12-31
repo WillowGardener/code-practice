@@ -20,16 +20,19 @@ function Chat() {
                 <div className="read-messages">
                     {messages.map(({ id,text,photoURL,uid,displayName }) => (
                         
-                        <div key={id} className={`message ${uid === auth.currentUser ? 'sent': 'received'}`}>
-                            <img className="profile-pic" src={photoURL} alt="profile pic" />
-                            <div className="text-container">
+                        <div key={id} className={`message ${uid === auth.currentUser.uid ? 'sent': 'received'}`}>
+                        
+                            <img className='profile-pic' src={photoURL} alt="profile pic" />
+                            <div className='text-container'>
                                 <h4>{displayName}</h4>
                                 <p className="message-text">{text}</p>
+                                
                             </div>
                         </div>
                         
                     ))}
                 </div>
+                
                 <SendMessage />
             </div>
         </div>

@@ -12,7 +12,7 @@ function SendMessage() {
     async function sendMessage(e){
         e.preventDefault()
         const {uid, photoURL,displayName} = auth.currentUser
-        
+        console.log(auth.currentUser.displayName)
         await db.collection('messages').add({
             text: message,
             photoURL,
@@ -25,7 +25,7 @@ function SendMessage() {
     return (
         <div>
             <form className="text-form" onSubmit={sendMessage}>
-                <textarea className= "text-input" type="text" value={message} onChange={(e)=> setMessage(e.target.value)} placeholder="type here..." />
+                <textarea className= "text-input" value={message} onChange={(e)=> setMessage(e.target.value)} placeholder="type here..." />
                 <Button type="submit">Send</Button>
             </form>
         </div>
