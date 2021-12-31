@@ -17,17 +17,19 @@ function Chat() {
                 <Signout />
             </header>
             <div className="chat-box">
-                {messages.map(({ id,text,photoURL,uid,displayName }) => (
-                    <div className="message">
+                <div className="read-messages">
+                    {messages.map(({ id,text,photoURL,uid,displayName }) => (
+                        
                         <div key={id} className={`message ${uid === auth.currentUser ? 'sent': 'received'}`}>
-                            <img src={photoURL} alt="profile pic" />
+                            <img className="profile-pic" src={photoURL} alt="profile pic" />
                             <div className="text-container">
                                 <h4>{displayName}</h4>
                                 <p className="message-text">{text}</p>
                             </div>
                         </div>
-                    </div>
-                ))}
+                        
+                    ))}
+                </div>
                 <SendMessage />
             </div>
         </div>

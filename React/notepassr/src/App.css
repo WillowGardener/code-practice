@@ -1,36 +1,94 @@
-header {
-    display: grid;
-    grid-template-columns: 85% auto;
-}
-
-.chat-box {
-    border: 1px soilid black;
-    display: flex;
-    flex-direction: column;
-}
-
-.message {
-    border: 1px soilid black;
-    display: flex;
-    margin: 5px;
-    max-width: 90%;
-
-}
-
 .app {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.chat {
-    width: 70%;
+
+header {
+    display: grid;
+    grid-template-columns: 85% auto;
 }
 
-textarea {
-    max-width: 90%;
+.chat {
+    width: 100vw;
+}
+
+.chat-box {
+    border: 1px soilid black;
+    display: grid;
+    grid-template-columns: 65% auto;
+    
+    max-width: 100%;
+}
+
+
+
+.message {
+    border: 1px soilid black;
+    display: grid;
+    grid-template-columns: 20% auto;
+    margin: 5px;
+    
+    
+
+}
+
+.profile-pic {
+    width: 10vw;
+    height: 10vw;
+}
+
+.text-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    
+}
+
+
+.text-input {
+    width: 30vw;
+    min-width: 30vw;
+    max-width: 30vw;
+
+    height: 75vh;
+    min-height: 75vh;
+    max-height: 75vh;
+
+    margin: 10px;
+    
+}
+    
+    
+
+.text-container {
+    max-width: 70%;
+    
 }
 
 .message-text {
-    max-width: 80%;
+    max-width: 90%;
+    overflow: hidden;
+    display: grid;
+    
+}
+
+.read-messages {
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.sent {
+    display: flex;
+    align-self: flex-end;
+}
+
+.received {
+    display: flex;
+    align-self: flex-start;
 }
