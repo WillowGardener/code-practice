@@ -12,8 +12,11 @@ function Signin() {
         auth.signInWithPopup(provider)
     }
     return (
-        <div>
-            <Button onClick={signInWithGoogle}>Sign In with Google</Button>
+        <div className="banner">
+            <div className="signin">
+                <h1 className="signin-title">NotePassr</h1>
+                <button className="signin-button" onClick={signInWithGoogle}>Sign In with Google</button>
+            </div>
         </div>
     )
 }

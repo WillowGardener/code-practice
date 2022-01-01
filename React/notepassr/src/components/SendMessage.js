@@ -26,7 +26,7 @@ function SendMessage() {
         <div>
             <form className="text-form" onSubmit={sendMessage}>
                 <textarea className= "text-input" value={message} onChange={(e)=> setMessage(e.target.value)} placeholder="type here..." />
-                <Button type="submit">Send</Button>
+                <Button className="send-button" type="submit">Send</Button>
             </form>
         </div>
     )
