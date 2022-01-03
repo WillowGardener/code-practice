@@ -13,7 +13,7 @@ function Chat() {
     return (
         <div className="chat">
             <header>
-                <h1>NotePassr</h1>
+                <h1 className='main-title'>NotePassr</h1>
                 <Signout />
             </header>
             <div className="chat-box">

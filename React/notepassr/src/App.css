@@ -61,7 +61,13 @@ header {
 h1 {
     text-shadow: 3px 3px #29272a54;
     font-family: 'Lobster', cursive;
-    color: #29272A
+    color: #29272A;
+    
+}
+
+.main-title {
+    margin-left: 5vw;
+    
 }
 
 .signin-title {
